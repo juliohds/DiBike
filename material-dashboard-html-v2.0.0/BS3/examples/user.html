@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>DiBike | Detalhe viagem</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS     -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!--  Material Dashboard CSS    -->
+    <link href="../assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="../assets/css/demo.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel='stylesheet'>
+    <link rel="icon" href="../assets/img/DiBike.ico">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+            <div class="logo">
+                <a href="" class="simple-text">
+                    <img src="../../../imagens/web_hi_res_512.png" width="60">
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="material-icons">dashboard</i>
+                            <p>Pagina inicial</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="live.html">
+                            <i class="material-icons">remove_red_eye</i>
+                            <p>Mapa ao vivo</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./maps.html" >
+                            <i class="material-icons">whatshot</i>
+                            <p>Mapa de calor</p>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="./table.html" style="background-color: #ffa726;">
+                            <i class="material-icons">attach_money</i>
+                            <p class="hidden-lg hidden-md">Notifications</p>                                                           
+                            <p>Aprovar Crédito <span class="notification">25</span></p>                                                                                
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="api_toggle">                          
+                            <!-- <i class="material-icons">content_paste</i> -->
+                            <i class="material-icons">language</i>
+                            <p>API<i class="material-icons" style="float: right;"></i></p>
+                        </a>
+                    </li>
+                    <li id="api_public" style="display: none;">
+                        <a href="http://5b09dceba991440014aaffc8.mockapi.io/api/v1/publicUsers" target="_blank">                          
+                            <!-- <i class="material-icons">content_paste</i> -->                            
+                            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspDados Publicos <i class="material-icons" style="float: right;">public</i></p>
+
+                        </a>
+                    </li>  
+                    <li id="api" style="display: none;">
+                        <a href="http://5b09dceba991440014aaffc8.mockapi.io/api/v1/users" target="_blank">                          
+                            <!-- <i class="material-icons">content_paste</i> -->                            
+                            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspDados Privados <i class="material-icons" style="float: right;">security</i></p>
+                        </a>
+                    </li>      
+                    <li>
+                        <a href="config.html" data-toggle="modal" data-target="#msg">
+                            <!-- <i class="material-icons">content_paste</i> -->
+                            <i class="material-icons">question_answer</i>
+                            <p>Enviar Push</p>
+                        </a>
+                    </li>               
+                    <li>
+                        <a href="users.html">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <p>Usuarios</p>
+                        </a>
+                    </li>       
+                    <li>
+                        <a href="config.html">
+                            <!-- <i class="material-icons">content_paste</i> -->
+                            <i class="material-icons">brightness_5</i>
+                            <p>Configurações</p>
+                        </a>
+                    </li>    
+                    <li>
+                        <a href="responsive-login-form/index.html">
+                            <!-- <i class="material-icons">content_paste</i> -->
+                            <i class="material-icons">arrow_back</i>
+                            <p>Sair</p>
+                        </a>
+                    </li>                                               
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <div class="content" style="margin-top: 10px;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">Informações da viagem</h4>
+                                    <p class="category">Confira os dados para aprovar</p>
+                                </div>
+                                <div class="card-content">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="googleMap" style="width:100%;height:350px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Inicio:</label>
+                                                    <input type="text" class="form-control" value="Av Bras Leme, 1000, Santana" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Fim:</label>
+                                                    <input type="text" class="form-control" value="Estação Lapa" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Distancia:</label>
+                                                    <input type="email" class="form-control" value="2,2 KM" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Tempo:</label>
+                                                    <input type="text" class="form-control" value=" 10 Minutos" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Velocidade Média:</label>
+                                                    <input type="text" class="form-control" value="17 k/h">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Transporte público:</label>
+                                                    <br>
+                                                    <ul>
+                                                        <li><i class="material-icons">directions_bus</i> Onibus Metro Santana 208M-10</li>
+                                                        <li><i class="material-icons">directions_subway</i> Metro Vermelha - Barra Funda</li>
+                                                        <!-- <li><i class="material-icons">directions_bus</i> Onibus Estação Lapa 4334-1</li> -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Valor de Beneficio:</label>
+                                                    <input type="text" class="form-control text-center" value="R$ 6,66">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                <button type="button" class="btn btn-primary" style="background-color: #4CAF50;" data-toggle="modal" data-target="#aprovar"><i class="material-icons">done</i>&nbspAprovar</button>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                <button type="button" class="btn btn-primary" style="background-color: #f44336;" data-toggle="modal" data-target="#reprovar"><i class="material-icons">close</i>&nbspReprovar</button>
+                                                
+
+                                            </div>
+                                        </div>                                        
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <a href="#pablo">
+                                        <img class="img" src="../assets/img/faces/rob_rob.jpg" />
+                                    </a>
+                                </div>
+                                <div class="content">                                    
+                                    <h4 class="card-title"><b>Robson Roberto Camanducci</b></h4>
+                                    <p class="card-content">
+                                       TIPO: Estudante <br>
+                                       CPF: 316.692.930-41 <br>
+                                       BILHETE UNICO: 550126633 <br>
+                                    </p>                                    
+                                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+                                    <div id="container" style="height: 200px; width: 100%; margin-top: -20 auto"></div>
+                                    <p style="Font-size: 15px;"><i class="material-icons" style="color: green; vertical-align: text-bottom;">done</i> 90% aprovado - <i class="material-icons" style="color: red; vertical-align: text-bottom;">close</i> 10% reprovado</p>
+                                    <hr>
+                                    <img class="img" src="../../../imagens/logos.png" style="width: 90%;" />
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="dashboard.html">
+                                    Página Inicial
+                                </a>
+                            </li>
+                            <li>
+                                <a href="live.html">
+                                    Mapa ao vivo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="maps.html">
+                                    Mapa de calor
+                                </a>
+                            </li>
+                            <li>
+                                <a href="table.html">
+                                    Aprovar Credito
+                                </a>
+                            </li>                            
+                        </ul>
+                    </nav>
+                    <p class="copyright pull-right" style="margin-right: 20px;">
+                        &copy;
+                        <script>
+
+                            var me_color = ["rgb(15,15,15)","rgb(15,15,15)"];
+
+                            document.write(new Date().getFullYear())
+
+                            Highcharts.chart('container', {
+                                chart: {
+                                    plotBackgroundColor: null,
+                                    plotBorderWidth: 0,                                    
+                                    plotShadow: false,
+                                    fontFamily: 'Roboto',
+                                    marginBottom: -40                                    
+                                },
+                                title: {
+                                    text: 'Histórico de análises',
+                                    style: {
+                                        fontWeight: 'bold'
+                                    },
+                                    align: 'center',
+                                    verticalAlign: 'middle',
+                                    y: -70
+                                },
+                                exporting: { enabled: false },
+                                credits: {
+                                  enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                },
+                                plotOptions: {
+                                    pie: {
+                                        dataLabels: {
+                                            enabled: false,
+                                            style: {                                                
+                                                color: me_color
+                                            }
+                                        },
+                                        startAngle: -90,
+                                        endAngle: 90,
+                                        center: ['50%', '75%']
+                                    }
+                                },
+
+                                series: [
+                                {
+                                    type: 'pie',
+                                    name: 'Viagens',
+                                    innerSize: '70%',
+                                    data: [{
+                                        name: 'Aceitas',
+                                        y: 90,
+                                        color: 'green' // Jane's color
+                                    },
+                                    {
+                                        name: 'Recusadas',
+                                        y: 10,
+                                        color: 'red' // Jane's color
+                                    }]                
+                                                                                                                                    
+                                }]
+                            });
+
+
+                        </script>
+                        <a href="#">DiBike</a>, construindo a cidade do amanhã 
+                    </p>
+                </div>
+            </footer>
+            <!-- Modal aprovar-->
+            <div class="modal fade" id="aprovar" tabindex="-1" role="dialog" aria-labelledby="aprovar" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="aprovar">Aprovar Beneficio de Viagem</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Tem certeza que deseja aprovar esta viagem?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" style="background-color: #4CAF50;" onclick="go_to_table()">Aprovar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal reprovar-->
+            <div class="modal fade" id="reprovar" tabindex="-1" role="dialog" aria-labelledby="aprovar" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reprovar">Reprovar Beneficio de Viagem</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Informe o motivo:
+                          
+                            <div class="form-group label-floating">                                        
+                                <textarea  class="form-control materialize-textarea" placeholder="Ex:" required=""></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="go_to_table()" style="background-color: #f44336;">Reprovar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Structure -->
+              <div id="modal1" class="modal">
+                <div class="modal-content">
+                  <h4>Pronto!</h4>
+                  <p>Operação realizada!</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+                </div>
+              </div>
+
+             <div class="modal fade" id="msg" tabindex="-1" role="dialog" aria-labelledby="aprovar" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reprovar">Enviar Mensagem push</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Texto da mensagem:</h4>
+                            <div class="form-group label-floating">                                        
+                                <textarea  class="form-control materialize-textarea" placeholder="Ex: Parabens! ja somos mais de 120 ciclistas hoje!" required=""></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="go_to_table()" style="background-color: #ffa726;">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!--   Core JS Files   -->
+<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/material.min.js" type="text/javascript"></script>
+<!--  Charts Plugin -->
+<script src="../assets/js/chartist.min.js"></script>
+<!--  Dynamic Elements plugin -->
+<script src="../assets/js/arrive.min.js"></script>
+<!--  PerfectScrollbar Library -->
+<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/bootstrap-notify.js"></script>
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFlIUbigIwX4o7pMpqr8_Z_dFRipZ_lac"></script>
+<!-- Material Dashboard javascript methods -->
+<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="../assets/js/demo.js"></script>
+
+<script>
+	var map;
+	var geocoder = new google.maps.Geocoder();
+	var origemTxt= "Av Bras Leme, 1000, Santana, São Paulo, SP";
+	var destinoTxt = "Rua josé correia de lima, 212, Pirituba, São Paulo, SP";
+	var directionsService;
+	
+    var mapOptions = 
+	{
+        center: new google.maps.LatLng(-23.599094, -46.638291), zoom: 11,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    function initialize()
+    {
+	
+        map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+
+		setTimeout(function(){ setDirections(); }, 2000);
+    }
+
+	function setDirections()
+	{
+		directionsService = new google.maps.DirectionsService();
+		
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+            suppressMarkers: false,
+            suppressInfoWindows: true,
+			polylineOptions: { strokeColor: "#002f6c" }
+        });
+		
+        directionsDisplay.setMap(map);
+
+        var requestBike = {
+          origin: origemTxt,
+          destination: destinoTxt,
+          travelMode: 'BICYCLING'
+        };
+		
+        directionsService.route(requestBike, function (response, status) 
+		{
+            if (status == google.maps.DirectionsStatus.OK) 
+			{
+                directionsDisplay.setDirections(response);
+            }
+        });
+
+        directionsDisplay2 = new google.maps.DirectionsRenderer({
+            suppressMarkers: false,
+            suppressInfoWindows: true,
+			polylineOptions: { strokeColor: "#8b0013" }
+        });
+		
+        directionsDisplay2.setMap(map);
+
+        var requestBus = {
+          origin: origemTxt,
+          destination: destinoTxt,
+          travelMode: 'TRANSIT'
+        };
+		
+        directionsService.route(requestBus, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay2.setDirections(response);
+            }
+        });
+		
+		codeAddress(origemTxt, 1000);
+		codeAddress(destinoTxt, 500);
+	}
+	
+	function codeAddress(address, radius) 
+	{
+		geocoder.geocode( { 'address': address}, function(results, status) 
+		{
+		  if (status == 'OK') 
+		  {
+			new google.maps.Circle({
+				strokeColor: '#FF0000',
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
+				fillColor: '#FF0000',
+				fillOpacity: 0.35,
+				map: map,
+				center: results[0].geometry.location,
+				radius: radius
+			});
+		  } 
+		  else 
+		  {
+			alert('Geocode was not successful for the following reason: ' + status);
+		  }
+		});
+	  }
+	
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+	function go_to_table(){
+		window.location.href = 'table.html';
+		
+	}
+</script>
+
+</html>
